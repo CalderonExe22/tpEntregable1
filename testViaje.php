@@ -24,19 +24,19 @@ $elCodijo=0;
 $elDestino="nulo";
 $laCantMaxPasajeros=1;
 $laCantPasajeros=1;
-$datosViajes = new viajes($elCodijo,$elDestino,$laCantMaxPasajeros,$laCantPasajeros);/*instanciar objeto*/
+$datosViajes = new viajes($elCodijo,$elDestino,$laCantMaxPasajeros,$laCantPasajeros);/*instanciar objeto datos del viaje predeterminados*/
 
 do{
     
-    $esString = new soloString();
+    $esString = new soloString();/*instanciar objeto de solo ingresar un string*/
 
-    $numeroEntre = new numero_entre();
+    $numeroEntre = new numero_entre();/*instanciar objeto de numero entre*/
 
-    $losMenus = new opciones();/*instanciar objeto*/
+    $losMenus = new opciones();/*instanciar objeto de  opciones */
 
-    $losMenus->setmenuPrincipal();
+    $losMenus->setmenuPrincipal();/*muestra el menu principal*/
     
-    $opcion = $losMenus->geteleccionMenu();
+    $opcion = $losMenus->geteleccionMenu();/*retorna el valor de la opcion elegida*/
 
     
     
@@ -45,17 +45,21 @@ do{
 
             echo "\n"."Ingrese el codigo del viaje: ";
             $elCodijo = trim(fgets(STDIN));
+
+            /*pequeña instruccion para solo ingresar un valor tipo integ*/
             while(!is_numeric($elCodijo)){
                 echo "ingrese solo numeros: ";
                 $elCodijo = trim(fgets(STDIN));
             }
 
             echo "\n"."Ingrese el destino del viaje: ";
-            $esString->esString();
-            $elDestino = $esString->getString();
+            $esString->esString();/*se ingresa el valor*/
+            $elDestino = $esString->getString();/*retorna el valor solo si es string*/
 
             echo "\n"."Ingrese cantidad maxima de pasajeros a bordo: ";
             $laCantMaxPasajeros = trim(fgets(STDIN));
+            
+            /*instruccion para que el valor solo sea del tipo string y sea mayor a cero*/
             while(is_numeric($laCantMaxPasajeros) && $laCantMaxPasajeros <= 0){
                 echo "ingrese  un numero mayor a 0: ";
                 $laCantMaxPasajeros = trim(fgets(STDIN));
@@ -63,20 +67,20 @@ do{
             }
 
             echo "\n"."Ingrese el numero de pasajeros a bordo: ";
-            $numeroEntre->setnumeroEntre($laCantMaxPasajeros);
-            $laCantPasajeros = $numeroEntre->getOpcionPasajero();
+            $numeroEntre->setnumeroEntre($laCantMaxPasajeros);/*se ingresa el valor*/
+            $laCantPasajeros = $numeroEntre->getnumeroEntre();/*retorna solo si el valor es un numero mayor a 0 pero que tambien no sobrepase la cantidad maxima de pasajeros*/
 
-            $datosViajes = new viajes($elCodijo,$elDestino,$laCantMaxPasajeros,$laCantPasajeros);
+            $datosViajes = new viajes($elCodijo,$elDestino,$laCantMaxPasajeros,$laCantPasajeros);/*instanciar objeto datos agregados de un viaje*/
             
 
             break;
         case 2:
 
-            $losMenus->setmenuOpcion2();
+            $losMenus->setmenuOpcion2();/*muestra el menu de la opcion 2*/
 
-            $modificadorPers = $losMenus->geteleccionMenuOpcion2();
+            $modificadorPers = $losMenus->geteleccionMenuOpcion2();/*retorna el valor de la opcion elegida*/
 
-            $datosViajes->setInfoPasajeros($datosPasajeros);
+            $datosViajes->setInfoPasajeros($datosPasajeros);/*agregamos los datos de los pasajeros a nuestra class atraves de un set*/
            
             switch($modificadorPers){
                 case 1:
@@ -86,15 +90,15 @@ do{
                         echo "\n".$e+1 .") Nombre: ".$datosPasajeros[$e]["nombre"]."\n"."   Apellido: ".$datosPasajeros[$e]["apellido"]."\n". "   Dni: ".$datosPasajeros[$e]["numero de documento"]."\n";
                     }
                     echo "\n"."Ingrese el numero de los datos de la persona a modificar: ";
-                    $numeroEntre->setnumeroEntre(count($datosPasajeros));
-                    $nroPersona = $numeroEntre->getOpcionPasajero();
+                    $numeroEntre->setnumeroEntre(count($datosPasajeros));/*con la instruccion count cuenta la cantidad de pasajeros y asigna como numero mayor a la instruccion de la clase numero_entre*/
+                    $nroPersona = $numeroEntre->getnumeroEntre();/*retorna el valor de la opcion elegida*/
 
                     echo "\n"."ingrese el nuevo nombre de la persona: ";
                     $esString->esString();
                     $nuevoNombre = $esString->getString();
 
-                    $datosViajes->setNombrePasajero($nuevoNombre,$nroPersona - 1);
-                    print_r($datosViajes->getInfoPasajeron());
+                    $datosViajes->setNombrePasajero($nuevoNombre,$nroPersona - 1); /* se ingresan los datos modificados al array de los datos de los pasajeros con la instruccion set*/
+                    print_r($datosViajes->getInfoPasajeron());/*se muestra el array con los datos modificados*/
                     break;
 
                 break;   
@@ -104,7 +108,7 @@ do{
                     }
                     echo "\n"."Ingrese el numero de los datos de la persona a modificar: ";
                     $numeroEntre->setnumeroEntre(count($datosPasajeros));
-                    $nroPersona = $numeroEntre->getOpcionPasajero();
+                    $nroPersona = $numeroEntre->getnumeroEntre();
                     
                     echo "\n"."ingrese el nuevo apellido de la persona: ";
                     $esString->esString();
@@ -120,7 +124,7 @@ do{
                     }
                     echo "\n"."Ingrese el numero de los datos de la persona a modificar: ";
                     $numeroEntre->setnumeroEntre(count($datosPasajeros));
-                    $nroPersona = $numeroEntre->getOpcionPasajero();
+                    $nroPersona = $numeroEntre->getnumeroEntre();
 
                     echo "\n"."ingrese el nuevo numero de documento de la persona: ";
                     $nuevoDni = trim(fgets(STDIN));
@@ -139,7 +143,7 @@ do{
                     }
                     echo "\n"."Ingrese el numero de los datos de la persona a modificar: ";
                     $numeroEntre->setnumeroEntre(count($datosPasajeros));
-                    $nroPersona = $numeroEntre->getOpcionPasajero();
+                    $nroPersona = $numeroEntre->getnumeroEntre();
 
                     echo "\n"."ingrese el nuevo nombre de la persona: ";
                     $esString->esString();
@@ -207,7 +211,7 @@ do{
                 case 4:
                     echo "\n"."ingrese una nueva cantidad de pasajeros: ";
                     $numeroEntre->setnumeroEntre($datosViajes->getCantidadMaxPasajeros());
-                    $nuevaCantPasaj = $numeroEntre->getOpcionPasajero();
+                    $nuevaCantPasaj = $numeroEntre->getnumeroEntre();
                     $datosViajes->setCantPasajeros($nuevaCantPasaj);
                     break;
                 
@@ -232,7 +236,7 @@ do{
                     }
                     echo "\n"."ingrese una nueva cantidad de pasajeros: ";
                     $numeroEntre->setnumeroEntre($nuevaCantMaxPasaj);
-                    $nuevaCantPasaj = $numeroEntre->getOpcionPasajero();
+                    $nuevaCantPasaj = $numeroEntre->getnumeroEntre();
 
                     $datosViajes->setCodViaje($nuevoCodViaje);
                     $datosViajes->setDestino($nuevoDestino);
@@ -244,13 +248,7 @@ do{
             break;
         case 4: 
 
-                echo $datosViajes;
-
-                /*echo "\n"."El codigo de viaje es: ".$datosViajes->getCodViaje()."\n";
-                echo "\n"."El destino del viaje fue: ".$datosViajes->getDestino()."\n";
-                echo "\n"."La cantidad maxima de pasajeros fue de: ". $datosViajes->getCantidadMaxPasajeros()."\n";
-                echo "\n"."La cantidad de pasajeros que viajaron fue de: ". $datosViajes->getCantPasajeros()."\n";*/
-            
+                echo $datosViajes;/*metodo __toString*/
             
             break;
     }
