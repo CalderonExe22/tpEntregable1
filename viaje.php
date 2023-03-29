@@ -96,10 +96,12 @@ class viajes{
         $this->infoPasajeros[$indice]["numero de documento"] = $nuevoDni;
     }
 
+    /*funcion get para devolver el array modificado*/
     public function getInfoPasajeron(){
         return $this->infoPasajeros;
     }
 
+    
     public function __toString(){
         
         return ("\n"."El codigo de viaje es: ".$this->getCodViaje()."\n".
@@ -205,15 +207,16 @@ class opciones{
 }
 
 
-
+/*cree una clase adicional para devolver un numero de opcion elegida solo si este se encuentra dentro de las opciones del menu*/
 class numero_entre{
 
     private $opcionNumero;
 
-    public function setnumeroEntre($numeroMay){
+    public function setnumeroEntre($numeroMay){/*se ingresa el valor del total de las opciones a elegir*/
 
         $nro = trim(fgets(STDIN));
 
+        /*instruccion para determinar si el valor ingresado se encuentra entre los numeros disponibles*/
         while (!is_int($nro) && !($nro >= 1 && $nro <= $numeroMay)) {
             echo "Debe ingresar un número entre 1 y ".$numeroMay.": ";
             $nro = trim(fgets(STDIN));
@@ -221,10 +224,13 @@ class numero_entre{
         $this->opcionNumero = $nro;
     }
 
-    public function getOpcionPasajero(){
+    /*retorna el numero de la opcion elegida*/
+    public function getnumeroEntre(){
         return $this->opcionNumero;
     }
 }
+
+
 
 class soloString{
 
@@ -232,9 +238,9 @@ class soloString{
 
     public function esString(){
         
-        $string = trim(fgets(STDIN));
+        $string = trim(fgets(STDIN));/*se ingresa el valor*/
 
-        while(ctype_alpha($string) == false){
+        while(ctype_alpha($string) == false){/*se valida si es una cadena del tipo string con ctype_alpha(devuelve un booleano)*/
 
             echo "ingrese solo letras, no numeros: ";
             $string = trim(fgets(STDIN));
@@ -244,6 +250,7 @@ class soloString{
         $this->esString = $string;
     }
 
+    /*retorna solo el valor string*/
     public function getString(){
         return $this->esString;
     }
