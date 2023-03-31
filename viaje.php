@@ -12,6 +12,9 @@ presente un menú que permita cargar la información del viaje, modificar y ver 
 
 
 class viajes{
+    /*int $codigoViaje,$cantMaxPasajeros,$cantPasajeros
+      array $infoPasajeros
+      string $destino,*/
 
     private $codigoViaje;
     private $destino;
@@ -21,7 +24,9 @@ class viajes{
 
     /* asignigno un metodo construct para tomar los datos del viaje y asignarlos a las variables*/
     public function __construct($codViaje,$dest,$maxPasaj,$cantDePasajeros,){
-        
+        /* int $codViaje,$dest,$maxPasaj,$cantDePasajeros
+           string $dest*/
+
         $this->codigoViaje = $codViaje;
         $this->destino = $dest;
         $this->cantMaxPasajeros = $maxPasaj;
@@ -32,27 +37,27 @@ class viajes{
 
     /*metodo para modificar la el codigo del viaje(utilizando el metodo set)*/
     public function setCodViaje($cambCodViaje){
-        
+        /*int $cambCodViaje*/
         $this->codigoViaje = $cambCodViaje;
     }
 
     /*metodo para modificar el destino del viaje(utilizando el metodo set)*/
     public function setDestino($cambDestViaje){
-       
+       /* string $cambDestViaje*/
         $this->destino = $cambDestViaje;
 
     }
 
     /*motodo para modificar la cantidad maxima de pasajeros(utilizando el metodo set)*/
     public function setCantidadMaxPasajeros($cambCantMaxPasaj){
-       
+       /*int $cambCantMaxPasaj*/
         $this->cantMaxPasajeros = $cambCantMaxPasaj; 
 
     }
 
     /*metodo para modificar la cantidad de pasajeros (utilizando el metodo set)*/
     public function setCantPasajeros($cambCantPasajeros){
-
+        /*$cambCantPasajeros*/
         $this->cantPasajeros = $cambCantPasajeros;
     }
     
@@ -81,18 +86,19 @@ class viajes{
     }
 
     public function setNombrePasajero($nuevoNombre,$indice){
+        /*string $nuevoNombre int $indice*/
 
         $this->infoPasajeros[$indice]["nombre"] = $nuevoNombre ;
     }
 
     public function setApellidoNuevo($nuevoApellido,$indice){
-
+        /*string $nuevoApellido int $indice*/
         $this->infoPasajeros[$indice]["apellido"] = $nuevoApellido;
         
     }
 
     public function setCambNroDni($nuevoDni,$indice){
-
+        /*int $nuevoDni int $indice*/
         $this->infoPasajeros[$indice]["numero de documento"] = $nuevoDni;
     }
 
@@ -103,155 +109,22 @@ class viajes{
 
     
     public function __toString(){
-        
-        return ("\n"."El codigo de viaje es: ".$this->getCodViaje()."\n".
-                "\n"."El destino del viaje fue: ".$this->getDestino()."\n".
-                "\n"."La cantidad maxima de pasajeros fue de: ". $this->getCantidadMaxPasajeros()."\n".
-                "\n"."La cantidad de pasajeros que viajaron fue de: ". $this->getCantPasajeros()."\n");
-            
+        /*string $mostrarPasajeros*/
+        $mostrarPasajeros = "";
+
+        for ($i=0; $i < count($this->getInfoPasajeron()); $i++) {
+             $mostrarPasajeros = $mostrarPasajeros."\n"."nombre: ".$this->infoPasajeros[$i]["nombre"]."\n".
+            "Apellido: ".$this->infoPasajeros[$i]["apellido"]."\n".
+             "numero de documento: ".$this->infoPasajeros[$i]["numero de documento"]."\n";
+        }
+        return     
+            "\n"."El codigo de viaje es: ".$this->getCodViaje()."\n".
+            "\n"."El destino del viaje fue: ".$this->getDestino()."\n".
+            "\n"."La cantidad maxima de pasajeros fue de: ". $this->getCantidadMaxPasajeros()."\n".
+            "\n"."La cantidad de pasajeros que viajaron fue de: ". $this->getCantPasajeros()."\n".
+            $mostrarPasajeros;
+          
     }
 
 }
 
-/* cree una clase adicional para los menus del programa testViaje.php, donde cada metodo es un menu del programa principal.
-retorna el numero de la opcion elegida de los menus
-*/
-
-class opciones{
-
-    private $opcion;
-    private $opcion2;
-    private $opcion3;
-
-    /*muestra el menu principal y asigna el valor de la eleccion al atributo $opcion*/ 
-    public function setmenuPrincipal(){
-        
-        echo "\n"."HOLA BIENVENIDO AL PROGRAMA "."\n";
-        echo "1) Cargar informacion del viaje."."\n";
-        echo "2) Modificar datos de pasajeros."."\n";
-        echo "3) Modificar datos de viajes."."\n";
-        echo "4) mostrar datos de viaje."."\n";
-        echo "5) salir."."\n";
-        echo "\n"."Ingrese alguna de las siguientes opciones: ";
-
-        $laOpcion=trim(fgets(STDIN));
-
-        /*esta instruccion evalua que el valor ingresado no sea un string y sea solamente un numero de las opciones*/
-        while (!is_int($laOpcion) && !($laOpcion >= 1 && $laOpcion <= 5)) {
-            echo "Debe ingresar un número entre 1 y 5: ";
-            $laOpcion = trim(fgets(STDIN));
-        }
-
-        $this->opcion = $laOpcion;
-
-    }
-
-    /*muestra el menu de la opcion 2 del programa(modificar datos de pasajero) y asigna el valor de la opcion al atributo $opcion2*/
-    public function setmenuOpcion2(){
-
-        echo "\n"."1)modificar el nombre de la persona. "."\n";
-        echo "2)modificar el apellido de una persona. "."\n";
-        echo "3)modificar el numero de documento de una persona. "."\n";
-        echo "4)modificar todos los datos."."\n";
-        echo "5)salir."."\n";
-        echo "\n"."ingrese el numero de su eleccion: ";
-
-        $laOpcion2 = trim(fgets(STDIN));
-        
-        /*esta instruccion evalua que el valor ingresado no sea un string y sea solamente un numero de las opciones*/
-        while (!is_int($laOpcion2) && !($laOpcion2 >= 1 && $laOpcion2 <= 5)) {
-            echo "Debe ingresar un número entre 1 y 5: ";
-            $laOpcion2 = trim(fgets(STDIN));
-        }
-
-        $this->opcion2 = $laOpcion2;
-        
-    }
-
-    /*muestra el menu de la opcion 3 del programa(modificar datos de viaje) y asigna el valor de la opcion al atributo $opcion3*/
-    public function setmenuOpcion3(){
-
-        echo "\n"."1)Codigo del viaje. "."\n";
-        echo "2)El destino del viaje."."\n";
-        echo "3)La cantidad maxima de pasajeros a bordo. "."\n";
-        echo "4)La cantidad de pasajeros. "."\n";
-        echo "5)Todo."."\n";
-        echo "6)Salir."."\n";
-        echo "que dato desea modificar: ";
-
-        $laOpcion3=trim(fgets(STDIN));
-
-        /*esta instruccion evalua que el valor ingresado no sea un string y sea solamente un numero de las opciones*/
-        while (!is_int($laOpcion3) && !($laOpcion3 >= 1 && $laOpcion3 <= 6)) {
-            echo "Debe ingresar un número entre 1 y 6: ";
-            $laOpcion3 = trim(fgets(STDIN));
-        }
-
-        $this->opcion3 = $laOpcion3;
-        
-    }
-
-    /* cada get retorna el valor del atributo con la opcion elegida de los menus*/
-    public function geteleccionMenu(){
-        return $this->opcion;
-    }
-
-    public function geteleccionMenuOpcion2(){
-        return $this->opcion2;
-    }
-
-    public function geteleccionMenuOpcion3(){
-        return $this->opcion3;
-    }
-
-}
-
-
-/*cree una clase adicional para devolver un numero de opcion elegida solo si este se encuentra dentro de las opciones del menu*/
-class numero_entre{
-
-    private $opcionNumero;
-
-    public function setnumeroEntre($numeroMay){/*se ingresa el valor del total de las opciones a elegir*/
-
-        $nro = trim(fgets(STDIN));
-
-        /*instruccion para determinar si el valor ingresado se encuentra entre los numeros disponibles*/
-        while (!is_int($nro) && !($nro >= 1 && $nro <= $numeroMay)) {
-            echo "Debe ingresar un número entre 1 y ".$numeroMay.": ";
-            $nro = trim(fgets(STDIN));
-        }
-        $this->opcionNumero = $nro;
-    }
-
-    /*retorna el numero de la opcion elegida*/
-    public function getnumeroEntre(){
-        return $this->opcionNumero;
-    }
-}
-
-
-
-class soloString{
-
-    private $esString;
-
-    public function esString(){
-        
-        $string = trim(fgets(STDIN));/*se ingresa el valor*/
-
-        while(ctype_alpha($string) == false){/*se valida si es una cadena del tipo string con ctype_alpha(devuelve un booleano)*/
-
-            echo "ingrese solo letras, no numeros: ";
-            $string = trim(fgets(STDIN));
-            
-        }
-        
-        $this->esString = $string;
-    }
-
-    /*retorna solo el valor string*/
-    public function getString(){
-        return $this->esString;
-    }
-}
