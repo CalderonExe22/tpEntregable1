@@ -21,9 +21,10 @@ class viajes{
     private $cantMaxPasajeros;
     private $cantPasajeros;
     private $infoPasajeros;
+    
 
     /* asignigno un metodo construct para tomar los datos del viaje y asignarlos a las variables*/
-    public function __construct($codViaje,$dest,$maxPasaj,$cantDePasajeros,){
+    public function __construct($codViaje,$dest,$maxPasaj,$cantDePasajeros,$laInfoPasajeros){
         /* int $codViaje,$dest,$maxPasaj,$cantDePasajeros
            string $dest*/
 
@@ -31,7 +32,8 @@ class viajes{
         $this->destino = $dest;
         $this->cantMaxPasajeros = $maxPasaj;
         $this->cantPasajeros = $cantDePasajeros;
-
+        $this->infoPasajeros = $laInfoPasajeros;
+        
     }
     /*-----------------------------------------------------------------------------------------*/
 
@@ -77,13 +79,9 @@ class viajes{
     public function getCantPasajeros(){
         return $this->cantPasajeros;
     }
-    
-    /*------------------------------------------------------*/
 
-    /*modificamos el arreglo usando el metodo set*/
-    public function setInfoPasajeros($laInfoPasajeros){
-        $this->infoPasajeros = $laInfoPasajeros;
-    }
+
+    /*------------------------------------------------------*/
 
     public function setNombrePasajero($nuevoNombre,$indice){
         /*string $nuevoNombre int $indice*/
@@ -102,6 +100,12 @@ class viajes{
         $this->infoPasajeros[$indice]["numero de documento"] = $nuevoDni;
     }
 
+    public function masPasajero($nomb,$apell,$dni,$ind){
+        
+        $this->infoPasajeros[$ind]["nombre"] =$nomb;
+        $this->infoPasajeros[$ind]["apellido"] =$apell;
+        $this->infoPasajeros[$ind]["numero de documento"] = $dni;
+    }
     /*funcion get para devolver el array modificado*/
     public function getInfoPasajeron(){
         return $this->infoPasajeros;
@@ -127,5 +131,6 @@ class viajes{
     }
 
 }
+
 
 
