@@ -12,13 +12,6 @@ $modificadorPers,$numeroDoc,$nuevaCantMaxPasaj,$nuevaCantPasaj.$nuevoDni
    array $datosPasajeros*/ 
    
    
-/*array de prueba*/
-$datosPasajeros[0]=["nombre"=>"marcos",
-                    "apellido"=>"fernandez",
-                    "numero de documento"=>44455678,];
-$datosPasajeros[1]=["nombre"=>"raul",
-                    "apellido"=>"alvares",
-                    "numero de documento"=>43465698,];
 
 
 /**
@@ -163,6 +156,15 @@ function esString(){
 /*asigno datos a las variabres de tipo nulo para que se muestren en la opcion 4 si es que el usuario no ingresa ningun dato al programa
 y este de error, ya que el objeto $datosViajes es un metodo __construct*/                   
 
+/*array de prueba*/
+$datosPasajeros[0]=["nombre"=>"marcos",
+                    "apellido"=>"fernandez",
+                    "numero de documento"=>44455678,];
+$datosPasajeros[1]=["nombre"=>"raul",
+                    "apellido"=>"alvares",
+                    "numero de documento"=>43465698,];
+
+
 $elCodijo=0;
 $elDestino="nulo";
 $laCantMaxPasajeros=1;
@@ -209,6 +211,7 @@ do{
 
             $datosViajes = new viajes($elCodijo,$elDestino,$laCantMaxPasajeros,$laCantPasajeros);/*instanciar objeto datos agregados de un viaje*/
             
+            $datosViajes->setInfoPasajeros($datosPasajeros);/*agregamos el array de los datos de los pasajeros a nuestra class atraves de un set*/
 
             break;
         case 2:
@@ -362,6 +365,7 @@ do{
                         echo "ingrese solo numeros: ";
                         $nuevoCodViaje = trim(fgets(STDIN));
                     }
+                    $datosViajes->setCodViaje($nuevoCodViaje);
 
                     echo "\n"."Ingrese el nuevo destino del viaje: ";
                     
@@ -376,18 +380,15 @@ do{
                         $nuevaCantMaxPasaj = trim(fgets(STDIN));
                         
                     }
+                    $datosViajes->setCantidadMaxPasajeros($nuevaCantMaxPasaj);
                     echo "\n"."ingrese una nueva cantidad de pasajeros: ";
 
                     $nuevaCantPasaj = numeroEntre($datosViajes->getCantidadMaxPasajeros());
 
                     $datosViajes->setCantPasajeros($nuevaCantPasaj);
+                    
                     break;
-
-                    $datosViajes->setCodViaje($nuevoCodViaje);
-                    $datosViajes->setDestino($nuevoDestino);
-                    $datosViajes->setCantidadMaxPasajeros($nuevaCantMaxPasaj);
-                    $datosViajes->setCantPasajeros($nuevaCantPasaj);
-                    break;
+                break;
             }
             
             break;
