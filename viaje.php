@@ -113,9 +113,9 @@ class viajes{
         $mostrarPasajeros = "";
 
         for ($i=0; $i < count($this->getInfoPasajeron()); $i++) {
-             $mostrarPasajeros = $mostrarPasajeros."\n"."nombre: ".$this->infoPasajeros[$i]["nombre"]."\n".
-            "Apellido: ".$this->infoPasajeros[$i]["apellido"]."\n".
-             "numero de documento: ".$this->infoPasajeros[$i]["numero de documento"]."\n";
+             $mostrarPasajeros = $mostrarPasajeros."\n"."nombre: ".$this->getInfoPasajeron()[$i]["nombre"]."\n".
+            "Apellido: ".$this->getInfoPasajeron()[$i]["apellido"]."\n".
+             "numero de documento: ".$this->getInfoPasajeron()[$i]["numero de documento"]."\n";
         }
         return     
             "\n"."El codigo de viaje es: ".$this->getCodViaje()."\n".
@@ -127,4 +127,5 @@ class viajes{
     }
 
 }
+
 
