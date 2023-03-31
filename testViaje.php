@@ -374,6 +374,7 @@ do{
                         /*ingresamos mas datos al array con el metodo set*/
                         $elIndice = count( $datosViajes->getInfoPasajeron());
                         $datosViajes->masPasajero($elNOmbrePasajeros, $elApellidoPasajero,$elDniPasajero,$elIndice);
+                        $datosViajes->setCantPasajeros(count($datosViajes->getInfoPasajeron()));
                       
                     }
                     break;
@@ -421,7 +422,7 @@ do{
                         /*ingresamos mas datos al array con el metodo set*/
                         $elIndice = count( $datosViajes->getInfoPasajeron());
                         $datosViajes->masPasajero($elNOmbrePasajeros, $elApellidoPasajero,$elDniPasajero,$elIndice);
-
+                        $datosViajes->setCantPasajeros($elIndice);
                  
                     }
                     
@@ -439,7 +440,6 @@ do{
 
 
 }while($opcion != 4);
-
 
 
 
