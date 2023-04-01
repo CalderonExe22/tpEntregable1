@@ -314,7 +314,7 @@ do{
                     $datosViajes->setNombrePasajero($nuevoNombre,$nroPersona);
                     $datosViajes->setApellidoNuevo($nuevoApellido,$nroPersona) ;
                     $datosViajes->setCambNroDni($nuevoDni,$nroPersona );
-                    $datosViajes->setInfoPasajeros($datosPasajeros);
+                    
 
                     
                     break;
@@ -440,6 +440,8 @@ do{
 
 
 }while($opcion != 4);
+
+
 
 
 
